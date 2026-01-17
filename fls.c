@@ -41,14 +41,13 @@ void color_print(struct all_information** alllist,int index){
 
 }
 
-int compare_by_name_string(const void*,const void*);    //sort
-int compre_by_time(const void*,const void*);   //sort
-void L_NULL_DETCET(void*);                          //检查NULL
+int compare_by_name_string(const void*,const void*);    
+int compre_by_time(const void*,const void*);   
+void L_NULL_DETCET(void*);                          
 
-/////////////////////////// about string //////////////////////////////
 int get_input_string_number(char*);
 char** get_input_string_segment(char*);
-////////////////////////////////////////////  about parameter //////////
+
 int count_dir_entry(DIR*);
 
 int handle(char*,int,int,int,int,int,int,int);
@@ -59,62 +58,7 @@ int get_line(struct all_information**,int,int,int,int,int);
 
 int main(int argc,char *argv[]){
    
-    // DIR* dir;
-    // struct dirent *entry;
-
-    // char **filesname = (char**)malloc(MAX_FILES * sizeof(char*));
-    // L_NULL_DETCET(filesname);
-
-    // dir = opendir("/");
-    // L_NULL_DETCET(dir);
-
-    // int number_files=0;
-    // for(;(entry = readdir(dir)) != NULL;){
-    //     int len = strlen(entry->d_name)+1;
-    //     filesname[number_files] = (char*)malloc(len * sizeof(char));
-    //     L_NULL_DETCET(filesname[number_files]);
-    //     if(filesname[number_files] != NULL){
-    //     memmove(filesname[number_files],entry->d_name,len);
-    //     number_files++;
-    //     }
-    // }
-
-    // qsort(filesname,number_files,sizeof(char *),compare_string);
-
-    //while(1){
-    //char input[114514];
-
-    // char exe_path[114514];
-    // ssize_t count = readlink("/proc/self/exe", exe_path, sizeof(exe_path) - 1);
-    
-    // exe_path[count] = '\0';
-
-
-    // printf("%s ",exe_path);
-    // printf("\033[1;34m~\033[1;34m");
-    // printf("\033[34m/学习这一块/\033[34m");
-    // printf("\033[1;34mc语言这一块\033[1;34m ");
-    // printf("\033[1;32m> ");
-    //printf("\033[34m上善若水，水善利万物而不争 ——《道德经》 \033[1;32m❯\033[0m ");
-
-    // if(fgets(input,114514,stdin)==NULL){
-        
-    //     size_t len=strlen(input);
-    //     if(len>0 && input[len-1]=='\n'){
-    //         input[len-1]='\0';
-    //     }
-
-    // }
-    // for(int i=0;i<114514;i++){
-    //     if(input[i]=='\n'){
-    //         input[i]='\0';
-    //         break;
-    //     }
-    // }
-    //printf("kewu:%s\n",input);
-    /////////////////////////////////////////////////////////////right//////////////////////////////////////////////////////
-
-
+   
 
     int have_ls=0;
     int have_a=0;
@@ -125,66 +69,7 @@ int main(int argc,char *argv[]){
     int have_i=0;
     int have_s=0;
 
-///////////////////////////////////////////////////////////first//////////////////////////////////////////////////////////////
-    
 
-    //         }else{
-
-    //             int errorlen=0;
-    //             int j=i;
-
-    //             while(input[j++]!=' '){
-    //                 errorlen++;
-    //             }
-
-    //             char* errorinput=(char *)malloc(sizeof(char)*errorlen);
-    //             memcpy(errorinput,input+i,errorlen);
-
-    //             printf("zsh: command not found: %s\n",errorinput);
-    //             return 0;
-
-    //         }
-    //     }    
-    // }
-//////////////////////////////////////////////////////////second/////////////////////////////////////////////////////////////////
-    //     for(;lable1<114514;lable1++){
-
-    //     if(input[lable1]!=' '){
-
-    //         if(input[i]=='-'){
-
-    //             if(input[i+1]==' '){
-
-
-    //             }
-
-    //         }
-
-    //         if(input[i]!='-'){
-
-    //             int errorlen=0;
-    //             int j=i;
-
-    //             while(input[j++]!=' '){
-    //                 errorlen++;
-    //             }
-
-    //             char* errorinput=(char *)malloc(sizeof(char)*errorlen);
-    //             memcpy(errorinput,input+i,errorlen);
-
-    //             printf("ls: cannot access '%s': No such file ontry->d_namr directory\n",errorinput);
-    //             i+=errorlen;
-    //         }
-    //     }
-    // }
-
-///////////////////////////////////////////////////////////获得输入的每个字符串/////////////////////////////////////////////////////////
-
-    
-    //int string_number = get_input_string_number(input);
-    // printf("number:%d\n",string_number);
-
-    //char** need=get_input_string_segment(input);
     int string_number =argc;
     char** need = malloc((argc + 1)*sizeof(char*));
     for(int i=0;i<argc;i++){
@@ -192,15 +77,7 @@ int main(int argc,char *argv[]){
     }
     need[argc]=NULL;
     
-    //printf("wtf\n");
-    // for(int i=0;i<string_number;i++){
-    //     printf("need[%d]:%s\n",i,need[i]);
-    // }
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////ok//////////////////////////
-
-/////////////////////////////////////////////////////////////检测参数//////////////////////////////////////////////////////////////////
-    if(strcmp(need[0],"ls")==0){
+        if(strcmp(need[0],"ls")==0){
 
         have_ls=1;
 
@@ -271,7 +148,6 @@ int main(int argc,char *argv[]){
     
    
     int it_have_file_name=0;                                      
-    //////////////////////////////////////////打开当前目录//////////////////////////////////////////////////////////
         DIR* dir_current;
         struct dirent *entry;
 
@@ -294,8 +170,6 @@ int main(int argc,char *argv[]){
 
 
     
-////////////////////////////////////////////////////////////////////////检测文件是否存在//////////////////////////////////////////////////////////
-
 
     int have_file_to_open=0;
 
@@ -303,8 +177,7 @@ int main(int argc,char *argv[]){
 
         if(need[i][0]!='-'){
 
-            /////////////////////////////////////////////////////////////////     here     ////////////////////////////////////////////////////////////////
-            for(int j=0;j<number_files;j++){
+                for(int j=0;j<number_files;j++){
                 int judge_have_file = handle(need[i],have_a,have_r,have_t,have_R,have_i,have_s,have_l);
                 if(judge_have_file==-1 && j==number_files-1){
                     printf("ls: cannot access '%s': No such file or directory\n",need[i]);
@@ -328,8 +201,6 @@ int main(int argc,char *argv[]){
     
 
     if(!have_file_to_open){
-
-        /////////////////////////////////////////////////////////////没有文件名，打开当前目录/////////////////////////////////////////////////////
         handle(".",have_a,have_r,have_t,have_R,have_i,have_s,have_l);
 
     }
@@ -350,25 +221,19 @@ void L_NULL_DETCET(void *liu){
 }
 
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////handle函数///////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 int handle(char* openfile,int have_a,int have_r,int have_t,int have_R,int have_i,int have_s,int have_l){
 
     DIR* dir;
     struct dirent *entry;
 
-    //printf("fuckfuckfuck\n");
-    //printf("openfile:%s\n",openfile);
-    dir = opendir(openfile);
+        dir = opendir(openfile);
     if(dir==NULL){
-        //printf("why the fuck open dir fail\n");
         printf("ls: cannot openfile directory '%s': Permission denied\n",openfile);
         return -1;
     }
 
     if(have_R) printf("\n%s:\n",openfile);
-    //printf("who the fuck is there?\n");
-
+    
     int number_files=count_dir_entry(dir);
 
     struct all_information** alllist = (struct all_information**)malloc(number_files * sizeof(struct all_information*));
@@ -376,8 +241,7 @@ int handle(char* openfile,int have_a,int have_r,int have_t,int have_R,int have_i
 
     int index=0;
     for(;(entry = readdir(dir)) != NULL;index++){
-        //printf("%d\n",index);
-        
+       
         char filepath[10000];
         snprintf(filepath, sizeof(filepath), "%s/%s", openfile, entry->d_name);
 
@@ -388,7 +252,7 @@ int handle(char* openfile,int have_a,int have_r,int have_t,int have_R,int have_i
             perror("stat error");
         }
 
-        //printf("noway\n");
+        
         alllist[index] = (struct all_information*)malloc(sizeof(struct all_information));
         L_NULL_DETCET(alllist[index]);
 
@@ -397,16 +261,12 @@ int handle(char* openfile,int have_a,int have_r,int have_t,int have_R,int have_i
         alllist[index]->inode = entry->d_ino;
 
         alllist[index]->stat_info = stat_info;
-        //printf("%d",alllist[index]->inode);
-        //printf("%s\n",alllist[index]->name);
-        //printf("done\n");
         
         
     }
    
     closedir(dir);
-    ///////////////////////////////////////////////////过滤隐藏文件////////////////////
-    if(!have_a){
+        if(!have_a){
         int new_index=0;
         for(int i=0;i<number_files;i++){
             if(alllist[i]->name==NULL) continue;
@@ -425,9 +285,7 @@ int handle(char* openfile,int have_a,int have_r,int have_t,int have_R,int have_i
     }
 
 
-    //printf("whos there.\n\n");
-    /////////////////////////////////////////////paixu///////////////////////////////////////////////
-    if(have_t){
+      if(have_t){
         qsort(alllist,number_files,sizeof(struct all_information*),compre_by_time);
     }else{
         qsort(alllist,number_files,sizeof(struct all_information*),compare_by_name_string);
@@ -457,11 +315,9 @@ int handle(char* openfile,int have_a,int have_r,int have_t,int have_R,int have_i
         for(int i=0;i<number_files;i++){
             int nlink_len = 0;
             nlink_len = snprintf(NULL, 0, "%lu", alllist[i]->stat_info->st_nlink);
-            //printf("nlink_len:%d\n",nlink_len);
             if(nlink_len > max_nlink_len){
                 max_nlink_len = nlink_len;
-                //printf("max_nlink_len:%d\n",max_nlink_len);
-            }
+              }
         }
         for(int i=0;i<number_files;i++){
             struct passwd *pw = getpwuid(alllist[i]->stat_info->st_uid);
@@ -480,8 +336,6 @@ int handle(char* openfile,int have_a,int have_r,int have_t,int have_R,int have_i
             }
         }
     }
-    //printf("max_nlink_len:%d\n",max_nlink_len);
-
 
     int max_inode_len=0;
     for(int i=0;i<number_files;i++){
@@ -501,12 +355,7 @@ int handle(char* openfile,int have_a,int have_r,int have_t,int have_R,int have_i
         }
     }
 
-    /////////////////////////////////////////////打印///////////////////////////////////////////////
-    //printf("printing:\n");
-    // if(have_R){
-    //     printf(".:\n");
-    // }
-    
+  
     if(have_l){
         int total_blocks=0;
         for(int i=0;i<number_files;i++){
@@ -535,10 +384,6 @@ int handle(char* openfile,int have_a,int have_r,int have_t,int have_R,int have_i
                 }
         }
     }
-/////////////////////////////////////////////////////////////////right/////////////////////////////////////
-
-    
-    // printf("adada\n");
 
     if(!have_l){
 
@@ -654,22 +499,17 @@ int handle(char* openfile,int have_a,int have_r,int have_t,int have_R,int have_i
     }
     
 
-    // 释放 alllist 及其所有内容
-    for (int i = 0; i < number_files; i++) {  
-        // 1. 先释放 stat_info 结构体
+     for (int i = 0; i < number_files; i++) {  
         if (alllist[i] && alllist[i]->stat_info) {
             free(alllist[i]->stat_info);
             alllist[i]->stat_info = NULL;
         }
-        
-        // 2. 再释放 all_information 结构体本身
-        if (alllist[i]) {
+              if (alllist[i]) {
             free(alllist[i]);
             alllist[i] = NULL;
         }
     }
 
-    // 3. 最后释放指针数组
     free(alllist);
     alllist = NULL;
     return 0;
@@ -706,8 +546,7 @@ void l_handle(struct all_information** alllist,int index,int nlink_len,int uid_l
     printf( (stat_info->st_mode & S_IWOTH) ? "w" : "-");
     printf( (stat_info->st_mode & S_IXOTH) ? "x" : "-");
     printf(" %*lu",nlink_len,stat_info->st_nlink);
-    //uid gid
-    
+
     printf(" %*s",uid_len,pw->pw_name);
     printf(" %*s",gid_len,gr->gr_name);
 
@@ -785,10 +624,10 @@ int compre_by_time(const void *a,const void *b){
 int get_line(struct all_information** alllist, int number_files,int have_i, int have_s, int have_a, int terminal_width) {
     
     if (number_files == 0 || terminal_width <= 0) {
-        return 1; // 默认一行
+        return 1; 
     }
     
-    // 1. 过滤隐藏文件（如果不显示的话）
+
     int display_count = 0;
     int* display_indices = malloc(number_files * sizeof(int));
     
@@ -800,43 +639,42 @@ int get_line(struct all_information** alllist, int number_files,int have_i, int 
     
     if (display_count == 0) {
         free(display_indices);
-        return 1; // 没有要显示的文件
+        return 1; 
     }
     
-    // 2. 计算每个显示项的宽度
     int *item_widths = malloc(display_count * sizeof(int));
     for (int i = 0; i < display_count; i++) {
         int idx = display_indices[i];
         
-        // 计算文件名宽度
+       
         item_widths[i] = strlen(alllist[idx]->name);
         
-        // 加上inode宽度（如果需要）
+       
         if (have_i) {
             char inode_buf[32];
             int inode_len = snprintf(inode_buf, sizeof(inode_buf), "%d", alllist[idx]->inode);
-            item_widths[i] += inode_len + 1; // +1 空格
+            item_widths[i] += inode_len + 1; 
         }
         
-        // 加上文件大小宽度（如果需要）
+     
         if (have_s) {
             char size_buf[32];
             int size_len = snprintf(size_buf, sizeof(size_buf), "%lu", alllist[idx]->stat_info->st_blocks / 2);
-            item_widths[i] += size_len + 1; // +1 空格
+            item_widths[i] += size_len + 1; 
         }
     }
     
-    // 3. 尝试不同的行数，找到最佳行数
+ 
     int best_line = 1;
     
     for (int line = 1; line <= display_count; line++) {
-        // 计算列数
+        
         int col = display_count / line;
         if (display_count % line != 0) {
             col++;
         }
         
-        // 计算每列的最大宽度
+        
         int* col_widths = malloc(col * sizeof(int));
         for (int c = 0; c < col; c++) {
             col_widths[c] = 0;
@@ -850,25 +688,24 @@ int get_line(struct all_information** alllist, int number_files,int have_i, int 
             }
         }
         
-        // 计算总宽度（包含列间距）
+        
         int total_width = 0;
         for (int c = 0; c < col; c++) {
             total_width += col_widths[c];
             if (c < col - 1) {
-                total_width += 2; // 列间距
+                total_width += 2; 
             }
         }
         
         free(col_widths);
         
-        // 检查是否适合终端宽度
+       
         if (total_width <= terminal_width) {
             best_line = line;
-            break; // 找到第一个合适的行数
+            break; 
         }
     }
     
-    // 4. 清理并返回
     free(display_indices);
     free(item_widths);
     
